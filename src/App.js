@@ -59,7 +59,7 @@ function App() {
         );
       })
       .catch((err) => {
-        console.error(err);
+        console.warn(err);
         setIsError(true);
         setPolyline([]);
         setGoogleRoute([]);
