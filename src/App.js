@@ -3,9 +3,7 @@ import Polyline from "@mapbox/polyline";
 import {useDebounceCallback} from 'hook';
 import {GoogleMap} from 'component';
 import {getJourneyInfo} from 'utils/helper';
-import fakeDate from './demoData.json';
 import './App.css';
-
 
 function App() {
   const [googleRoute, setGoogleRoute] = useState([]);
@@ -13,9 +11,11 @@ function App() {
   const [polyline, setPolyline] = useState([]);
   const [showMarker, setShowMarker] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [locationInfo, setLocationInfo] = useState({
     startLocation: "",
-    endLocation: ""
+    endLocation: "",
+    journeyType: ''
   });
   const findJourneyInfo = useDebounceCallback((value) => {
     if (!value) {
@@ -23,9 +23,7 @@ function App() {
     }
     setLoading(true);
     getJourneyInfo(value)
-      .then((data) => console.log(data))
-      .catch((err) => {
-        console.error(err);
+      .then(({data}) => {
         const {
           data: {
             routePolyline,
@@ -34,33 +32,44 @@ function App() {
             destination,
             journeyType
           }
-        } = fakeDate;
-        if (journeyType === "default") {
-          setLocationInfo({
-            startLocation: source,
-            endLocation: destination
-          });
-          const polylineCoodinates = journeyRoutes?.map(
-            ({ longitude, latitude }) => ({
-              lat: parseFloat(latitude),
-              lng: parseFloat(longitude)
-            })
-          );
-          polylineCoodinates.shift();
-          setPolyline(polylineCoodinates);
-          setGoogleRoute(
-            Polyline.decode(routePolyline).map(([lat, lng]) => ({
-              lat,
-              lng
-            }))
-          );
+        } = data;
+        setLocationInfo({
+          startLocation: source,
+          endLocation: destination,
+          journeyType: journeyType === "default" ? 'Default': 'My Way',
+        });
+        if(journeyType !== "default"){
+          setPolyline([]);
+          setGoogleRoute([]);
+          return;
         }
+        const polylineCoodinates = journeyRoutes?.map(
+          ({ longitude, latitude }) => ({
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+          })
+        );
+        polylineCoodinates.shift();
+        setPolyline(polylineCoodinates);
+        setGoogleRoute(
+          Polyline.decode(routePolyline).map(([lat, lng]) => ({
+            lat,
+            lng
+          }))
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsError(true);
+        setPolyline([]);
+        setGoogleRoute([]);
       })
       .finally(() => {
         setLoading(false);
       });
   });
   const handleChange = ({ target: { value } }) => {
+    setIsError(false);
     setJourneyId(value);
     findJourneyInfo(value);
   };
@@ -96,8 +105,12 @@ function App() {
           <h2>Please Wait... </h2>{" "}
         </div>
       )}
-      {!loading && locationInfo.startLocation && (
+      {!loading && isError && <div className='error'> No record found</div>}
+      {!loading && !isError && locationInfo.startLocation && (
         <div className="routeInfo">
+          <div className="routeText">
+            <b>Journey Type </b> : <h6>{locationInfo.journeyType}</h6>
+          </div>
           <div className="routeText">
             <b>Source </b>: <h6>{locationInfo.startLocation}</h6>
           </div>
@@ -113,7 +126,7 @@ function App() {
           showMarker={showMarker}
           zoom={14}
           className="googlemap"
-          height="85vh"
+          height="75vh"
           googleRoute={googleRoute}
           showGoogleRoute
           startLocation={locationInfo.startLocation}

@@ -1,6 +1,5 @@
 import axios from "axios";
 const isProduction = process.env.REACT_APP_IS_PRODUCTION;
-console.log(isProduction);
 const url = {
     true: process.env.REACT_APP_PROD_URL,
     false: process.env.REACT_APP_UAT_URL

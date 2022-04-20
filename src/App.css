@@ -1,6 +1,8 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  margin: 0 20px;
+  color: black;
 }
 .input {
   margin-bottom: 10px;
@@ -111,4 +113,8 @@ input[type="text"]:focus {
   margin-left: 10px;
   text-decoration: underline;
   font-size: 14px;
+}
+.error{
+  color: red;
+  font-size: 20px;
 }

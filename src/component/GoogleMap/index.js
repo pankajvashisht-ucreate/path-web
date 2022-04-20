@@ -117,7 +117,6 @@ const MAP = React.memo(
           });
         }
       };
-      console.log("google");
       loadScript()
         .then(() => {
           initMap();
