@@ -6,7 +6,7 @@ const process = require('process');
 const app = express();
 const cors = require('cors');
 app.use(express.static(path.join(__dirname, '../build')));
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.use(cors());
 
 app.use(bodyParser.json({ limit: '10mb', extended: true }));
