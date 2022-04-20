@@ -1,0 +1,70 @@
+{
+    "success": true,
+    "status": 200,
+    "data": {
+      "source": "No 440, 1, Sector 52, Chandigarh, 160036, India",
+      "sourceLatitude": "30.709532",
+      "sourceLongitude": "76.7403082922101",
+      "destination": "Chandigarh, India",
+      "destinationLongitude": "76.7794179",
+      "destinationLatitude": "30.7333148",
+      "journeyId": 4504,
+      "name": null,
+      "status": "finished",
+      "routePolyline": "q}lzD{iksMPOBi@CaBEm@oFiKgCsE}A}C{@{@MB_@A]QU_@Eg@Da@DOSiAmI}OwFcKWi@}@aB_@g@y@_BeCeFw@wA_GwKqAyBIIa@MKAWSKW?I?WBIE_@KYWc@uAeCcHuMgF_K{@yAqCiFcL{Ss@w@I@O@a@KUUOc@Aa@F_@a@sAm@sA}BiEyGcM_BwC}BiEeHaNkGeLOWo@q@D?",
+      "journeyType": "default",
+      "transportMode": "walk",
+      "journeyRoutes": [
+        {
+          "longitude": "30.709532",
+          "latitude": "76.7403082922101",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912266
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912270
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912274
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912278
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912282
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912286
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912290
+        },
+        {
+          "longitude": "76.7403082922101",
+          "latitude": "30.709532",
+          "w3wLocation": "bronzes.forms.telephone",
+          "journeyRouteId": 912294
+        }
+      ]
+    },
+    "meta": null
+  }
+  
