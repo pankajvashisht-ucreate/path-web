@@ -5,7 +5,12 @@ const url = {
     false: process.env.REACT_APP_UAT_URL
 };
 const instance = axios.create({
-  baseURL: url[isProduction]
+  baseURL: url[isProduction],
+  headers: {
+    "x-access-token": process.env.REACT_APP_API_TOKEN,
+    "Content-Type": "application/json",
+    role: "member"
+  }
 });
 export const getJourneyInfo = (journeyId) => {
   return instance.get(`/journey/${journeyId}/locations`);
